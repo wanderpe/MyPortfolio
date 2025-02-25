@@ -1,90 +1,172 @@
+"use client";
 
-import Image from "next/image";
+import Aboutme from "@/app/components/aboutme/about-me-page";
+import Projects from "@/app/components/Projects";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import NavBar from "./components/NavBar";
+import { useRef } from "react";
 import { TypeAnimation } from "react-type-animation";
 
 export default function Home() {
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null); // Add projects ref
+
+  const { scrollYProgress } = useScroll({
+    target: aboutRef,
+    offset: ["0 1", "1 0"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+
+  const scrollToAbout = () => {
+    aboutRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const scrollToProjects = () => {
+    projectsRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
-   <main className='w-screen h-screen relative'>
-    <div className='flex items-center w-full h-full bg-cover bg-center' style={{backgroundImage: "url(./home-bg.jpg)"}}>
-      <div className='pl-20 md:pl-40 pb-56 md:pb-20 flex flex-col gap-5 z-[10] max-w-[750px]'>
-        <h1 className='text-[60px] text-white font-semibold'>
-          Make anything Possible with
-          <br/>
-          <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500'>
-             Web Development
-          </span>
+    <>
+      <main className="min-h-screen bg-gradient-to-b from-neutral-950 to-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-3xl" />
 
-        </h1>
-        <div className='flex-col md:flex-row hidden md:flex gap-5'>
-          <Link href="/aboutme" className='rounded-[20px] group relative bg-blue-500 hover:bg-blue-400 px-5 py-3 text-lg text-white max-w-[200px] transition duration-300 ease-in-out hover:shadow-lg transform hover:scale-105'>
-            <div className='absolute rounded-[20px] z-[1] bg-white inset-0 opacity-0 group-hover:opacity-20 transition duration-300 ease-in-out'/>
-            About Me
-          </Link>
+        <div className="container mx-auto px-4 py-16 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center justify-center min-h-[80vh] gap-8"
+          >
+            <Card className="w-full max-w-4xl p-8 bg-black/40 border-white/10 backdrop-blur-xl">
+              <TypeAnimation
+                sequence={[
+                  "Transforming Ideas into Reality",
+                  2000,
+                  "Engineering Digital Excellence",
+                  2000,
+                  "Building the Future of Web",
+                  2000,
+                ]}
+                wrapper="h1"
+                className="text-3xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/80 text-center tracking-tight"
+                repeat={Infinity}
+              />
 
-          <Link href="/contanct-me" className='rounded-[20px] group relative bg-blue-500 hover:bg-blue-400 px-5 py-3 text-lg text-white max-w-[200px] transition duration-300 ease-in-out hover:shadow-lg transform hover:scale-105'>
-            <div className='absolute rounded-[20px] z-[1] bg-white inset-0 opacity-0 group-hover:opacity-20 transition duration-300 ease-in-out'/>
-            My Projects
-          </Link>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="space-y-4 mt-6"
+              >
+                <p className="text-gray-300 text-lg md:text-xl text-center max-w-2xl mx-auto leading-relaxed">
+                  Full-stack Developer crafting high-performance, scalable
+                  solutions that drive business growth and user engagement.
+                </p>
+                <p className="text-gray-400 text-base md:text-lg text-center max-w-2xl mx-auto">
+                  Specialized in{" "}
+                  <span className="text-white font-medium">Next.js</span>,
+                  <span className="text-white font-medium"> TypeScript</span>,
+                  and
+                  <span className="text-white font-medium">
+                    {" "}
+                    Cloud Architecture
+                  </span>{" "}
+                  | Turning complex challenges into elegant solutions
+                </p>
+              </motion.div>
 
-          <Link href="/contanct-me" className='rounded-[20px] group relative bg-blue-500 hover:bg-blue-400 px-5 py-3 text-lg text-white max-w-[200px] transition duration-300 ease-in-out hover:shadow-lg transform hover:scale-105'>
-            <div className='absolute rounded-[20px] z-[1] bg-white inset-0 opacity-0 group-hover:opacity-20 transition duration-300 ease-in-out'/>
-            Contant Me
-          </Link>
-
-
+              <motion.div
+                className="flex flex-wrap justify-center gap-4 mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                {[
+                  {
+                    href: "#about",
+                    text: "About Me",
+                    variant: "default",
+                    onClick: scrollToAbout,
+                  },
+                  {
+                    href: "#projects",
+                    text: "View Projects",
+                    variant: "secondary",
+                    onClick: scrollToProjects, // Add scroll handler
+                  },
+                  {
+                    href: "/contact",
+                    text: "Get in Touch",
+                    variant: "outline",
+                  },
+                ].map((link, index) => (
+                  <Button
+                    key={index}
+                    variant="default"
+                    asChild
+                    className="min-w-[160px] rounded-full hover:scale-105 transition-transform"
+                    onClick={link.onClick}
+                  >
+                    <Link href={link.href}>{link.text}</Link>
+                  </Button>
+                ))}
+              </motion.div>
+            </Card>
+          </motion.div>
         </div>
-      </div>
-    </div>
 
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            animate={{
+              scale: [1, 1.1, 1],
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px]"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-full blur-3xl" />
+          </motion.div>
+        </div>
 
-    <div className='absolute flex bottom-10 z-[20] right-5 flex-col  md:hidden gap-5'>
-          <Link href="/my-skills" className='rounded-[20px] group bg-blue-500 hover:bg-blue-400 px-5 py-3 text-lg text-white max-w-[200px]'>
-            Learn More
-          </Link>
-          <Link href="/my-projects" className='rounded-[20px] group bg-blue-500 hover:bg-blue-400 px-5 py-3 text-lg text-white max-w-[200px]'>
-         
-            My Project
-          </Link>
-          <Link href="/contanct-me" className='rounded-[20px] group bg-blue-500 hover:bg-blue-400 px-5 py-3 text-lg text-white max-w-[200px]'>
-            
-            Contact me
-          </Link>
-    </div>  
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+          <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/10">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-xs text-white/60">Available for work</span>
+            </div>
+          </div>
+        </div>
+      </main>
 
-    <div className="absolute bottom-0 right-0 z-[10]">
-        <Image
-          src="/horse.png"
-          alt="horse"
-          height={300}
-          width={300}
-          className="absolute right-55 top-40"
-        />
+      <motion.section
+        ref={aboutRef}
+        style={{ y, opacity }}
+        className="w-full scroll-mt-24"
+      >
+        <Aboutme />
+      </motion.section>
 
-        <Image src="/cliff.webp" alt="cliff" width={480} height={480} />
-    </div>
-
-      <div className='absolute bottom-0 z-[5] w-full h-auto'>
-          <Image
-            src="/trees.webp"
-            alt="tress"
-            width={2000}
-            height={2000}
-            className="w-full h-full"
-          />
-
-      </div>
-      <Image
-        src="/stars.png"
-        alt="stars"
-        height={300}
-        width={300}
-        className='absolute top-10 left-0 z-[10]'      
-      
-      />
-
-      
-   </main>
+      <motion.section
+        ref={projectsRef} // Add ref here
+        style={{ y, opacity }}
+        className="w-full scroll-mt-24"
+      >
+        <Projects />
+      </motion.section>
+    </>
   );
 }
