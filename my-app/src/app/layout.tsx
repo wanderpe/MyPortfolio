@@ -28,7 +28,7 @@ export default function RootLayout({
 
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
-            <NavBar></NavBar>
+            
             {children}
             
 
