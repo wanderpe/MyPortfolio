@@ -1,8 +1,10 @@
 "use client";
 
+import { useSectionInView } from "@/app/lib/hooks";
+import admin from "@/assests/admin.png";
 import planetario from "@/assests/planetario.png";
 import Versa from "@/assests/versa.png";
-import admin from "@/assests/admin.png";
+import versaproperties from "@/assests/versaproperties.png";
 import {
   Card,
   CardContent,
@@ -13,7 +15,6 @@ import {
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useSectionInView } from "@/app/lib/hooks";
 
 const projects = [
   {
@@ -64,19 +65,34 @@ const projects = [
 
     demo: "/no-demo",
   },
+  {
+    title: "Versa Properties",
+    description:
+      "Versa Properties is a modern real estate platform that streamlines property sales and commissions with an automated, multi-level compensation system.",
+    image: versaproperties, // Add your project image
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind Css",
+      "NestJs",
+      "Prisma",
+      "Postgres",
+    ],
+
+    demo: "https://real-estate.versa.com.ph/public/harvy-pettes/real-estate",
+  },
   // Add more projects...
 ];
 
 export default function Projects() {
-
- const { ref } = useSectionInView("Projects");
+  const { ref } = useSectionInView("Projects");
 
   return (
     <section className="relative py-24 bg-gradient-to-b from-black to-neutral-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.section
-        ref={ref}
-        id="projects"
+          ref={ref}
+          id="projects"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
