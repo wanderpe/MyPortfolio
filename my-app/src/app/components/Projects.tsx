@@ -88,7 +88,7 @@ export default function Projects() {
   const { ref } = useSectionInView("Projects");
 
   return (
-    <section className="relative py-24 bg-gradient-to-b from-black to-neutral-950">
+    <section className="relative py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.section
           ref={ref}
@@ -98,10 +98,10 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-foreground  mb-4">
             Featured Projects
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-foreground max-w-2xl mx-auto">
             A showcase of my recent work and technical capabilities.
           </p>
         </motion.section>
@@ -116,7 +116,7 @@ export default function Projects() {
               className="h-full" // Add height full
             >
               <Link href={project.demo} className="h-full block">
-                <Card className="group relative overflow-hidden bg-black/40 border-white/10 backdrop-blur-xl hover:bg-white/5 transition-all duration-300 h-full flex flex-col">
+                <Card className="group relative overflow-hidden backdrop-blur-xl  transition-all duration-300 h-full flex flex-col">
                   <CardHeader className="relative aspect-video p-0 overflow-hidden rounded-t-lg flex-shrink-0">
                     <Image
                       src={project.image}
@@ -128,11 +128,11 @@ export default function Projects() {
                   </CardHeader>
 
                   <CardContent className="p-6 flex-grow flex flex-col">
-                    <CardTitle className="text-xl font-semibold text-white mb-2">
+                    <CardTitle className="text-xl font-semibold e mb-2">
                       {project.title}
                     </CardTitle>
-                    <CardDescription className="text-gray-400 mb-4 line-clamp-3">
-                      {project.description}
+                    <CardDescription className="text-foreground mb-4 line-clamp-3">
+                      {project.description}text-whit
                     </CardDescription>
 
                     <div className="flex flex-wrap gap-2 mt-auto">
