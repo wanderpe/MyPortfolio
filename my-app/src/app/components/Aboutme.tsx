@@ -1,6 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ModeToggle } from "@/components/ui/them-toggler";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
@@ -66,14 +67,12 @@ export default function About() {
   return (
     <motion.section
       ref={containerRef}
-      className="relative px-4 sm:px-6 py-16 md:py-24 bg-neutral-950"
+      className="relative px-4 sm:px-6 py-16 md:py-24 bg-background"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
       <div className="max-w-6xl mx-auto">
-        
-
         {/* Bento Grid Layout */}
         <div className="space-y-4 md:gap-6">
           {/* Profile Card - 2 cols wide on large screens */}
@@ -84,30 +83,35 @@ export default function About() {
             animate="animate"
             className="col-span-1 md:col-span-2"
           >
-            <Card className="bg-neutral-900 border-white/10 h-full overflow-hidden">
+            <Card className="border-border bg-card h-full overflow-hidden relative">
+              {/* Theme Toggle Button - Positioned at top right */}
+              <div className="absolute top-4 right-4 z-10">
+                <ModeToggle />
+              </div>
+
               <CardContent className="p-6">
                 <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
                   {/* Profile Image */}
                   <div className="relative">
-                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-md overflow-hidden border-2 border-white/10 relative">
+                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-md overflow-hidden border-2 border-border relative">
                       <img
                         src="/Profile.jpg"
                         alt="Your Name"
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="absolute -bottom-2 -right-2 px-3 py-1 bg-black border border-white/10 text-xs text-white/80 backdrop-blur-md rounded-sm">
+                    <div className="absolute -bottom-2 -right-2 px-3 py-1 bg-accent border border-border text-xs text-accent-foreground backdrop-blur-md rounded-sm">
                       Available
                     </div>
                   </div>
 
                   {/* Profile Info */}
                   <div className="space-y-4 text-center md:text-left">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white">
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground">
                       Harvy Pettes Ardiza
                     </h3>
 
-                    <div className="flex flex-col gap-3 text-gray-300 text-sm">
+                    <div className="flex flex-col gap-3 text-muted-foreground text-sm">
                       <div className="flex items-center justify-center md:justify-start gap-2">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +123,7 @@ export default function About() {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="text-blue-400"
+                          className="text-blue-500 dark:text-blue-400"
                         >
                           <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
                           <circle cx="12" cy="10" r="3"></circle>
@@ -138,7 +142,7 @@ export default function About() {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="text-blue-400"
+                          className="text-blue-500 dark:text-blue-400"
                         >
                           <rect
                             width="18"
@@ -157,7 +161,7 @@ export default function About() {
                     </div>
 
                     <div className="flex justify-center md:justify-start gap-3 pt-2">
-                      <button className="px-4 py-2 bg-white text-black font-medium text-sm rounded-sm hover:bg-gray-200 transition-colors">
+                      <button className="px-4 py-2 bg-primary text-primary-foreground font-medium text-sm rounded-sm hover:bg-primary/90 transition-colors">
                         <div className="flex items-center gap-2">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +184,6 @@ export default function About() {
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                           </svg>
                           <a href="mailto:harvypettesardiza@gmail.com">
-                            {" "}
                             Send Email
                           </a>
                         </div>
@@ -189,7 +192,7 @@ export default function About() {
                       <a
                         href="/Ardiza_Resume.pdf"
                         download
-                        className="px-4 py-2 border border-white/10 text-white font-medium text-sm rounded-sm hover:bg-white/10 transition-colors inline-flex items-center gap-2"
+                        className="px-4 py-2 border border-border text-foreground font-medium text-sm rounded-sm hover:bg-accent hover:text-accent-foreground transition-colors inline-flex items-center gap-2"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -215,7 +218,7 @@ export default function About() {
             </Card>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Bio Card - Spans 2 rows */}
             <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
               <motion.div
@@ -225,9 +228,9 @@ export default function About() {
                 animate="animate"
                 className="h-full"
               >
-                <Card className="bg-neutral-900 border-white/10 h-full">
+                <Card className="border-border bg-card h-full">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-xl font-semibold text-white flex items-center gap-2">
+                    <CardTitle className="text-xl font-semibold text-foreground flex items-center gap-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="18"
@@ -238,7 +241,7 @@ export default function About() {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="text-blue-400"
+                        className="text-blue-500 dark:text-blue-400"
                       >
                         <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
@@ -246,7 +249,7 @@ export default function About() {
                       Bio
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4 text-gray-300">
+                  <CardContent className="space-y-4 text-muted-foreground">
                     <p className="leading-relaxed text-lg">
                       👋 I'm a results-driven full-stack developer passionate
                       about building high-performance, scalable, and
@@ -258,7 +261,7 @@ export default function About() {
                       seamless, responsive UIs that drive engagement and
                       efficiency.
                     </p>
-                    <p className="text-white font-medium">
+                    <p className="text-foreground font-medium">
                       💡 Let's collaborate on your next project!
                     </p>
                   </CardContent>
@@ -270,9 +273,9 @@ export default function About() {
                 initial="initial"
                 animate="animate"
               >
-                <Card className="bg-neutral-900 border-white/10">
+                <Card className="border-border bg-card">
                   <CardHeader className="pb-4">
-                    <CardTitle className="text-2xl font-bold text-white">
+                    <CardTitle className="text-2xl font-bold text-foreground">
                       Tech Stack
                     </CardTitle>
                   </CardHeader>
@@ -280,7 +283,7 @@ export default function About() {
                     {[
                       {
                         label: "Frontend",
-                        iconColor: "text-blue-400",
+                        iconColor: "text-blue-500 dark:text-blue-400",
                         icon: (
                           <>
                             <path d="M12 19c-2.3 0-6.4-.2-8.1-.6-.7-.2-1.2-.7-1.4-1.4-.3-1.1-.5-3.4-.5-5s.2-3.9.5-5c.2-.7.7-1.2 1.4-1.4C5.6 5.2 9.7 5 12 5s6.4.2 8.1.6c.7.2 1.2.7 1.4 1.4.3 1.1.5 3.4.5 5s-.2 3.9-.5 5c-.2.7-.7 1.2-1.4 1.4-1.7.4-5.8.6-8.1.6z" />
@@ -291,7 +294,7 @@ export default function About() {
                       },
                       {
                         label: "Backend",
-                        iconColor: "text-purple-400",
+                        iconColor: "text-purple-500 dark:text-purple-400",
                         icon: (
                           <>
                             <rect
@@ -312,7 +315,7 @@ export default function About() {
                       },
                       {
                         label: "Database",
-                        iconColor: "text-green-400",
+                        iconColor: "text-green-500 dark:text-green-400",
                         icon: (
                           <>
                             <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
@@ -324,7 +327,7 @@ export default function About() {
                       },
                       {
                         label: "DevOps",
-                        iconColor: "text-orange-400",
+                        iconColor: "text-orange-500 dark:text-orange-400",
                         icon: (
                           <>
                             <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path>
@@ -336,7 +339,7 @@ export default function About() {
                       },
                     ].map(({ label, iconColor, icon, skills }) => (
                       <div key={label}>
-                        <div className="flex items-center gap-2 mb-2 text-white text-lg font-semibold">
+                        <div className="flex items-center gap-2 mb-2 text-foreground text-lg font-semibold">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="18"
@@ -357,7 +360,7 @@ export default function About() {
                           {skills.map((skill) => (
                             <span
                               key={`${label}-${skill}`}
-                              className="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-sm text-white/80 rounded-sm transition-all"
+                              className="px-3 py-1.5 bg-accent/50 hover:bg-accent border border-border text-sm text-foreground rounded-sm transition-all"
                             >
                               {skill}
                             </span>
@@ -370,7 +373,7 @@ export default function About() {
               </motion.div>
             </div>
 
-            {/* Work Experice Card - Spans 2 rows */}
+            {/* Work Experience Card - Spans 2 rows */}
             <motion.div
               custom={7}
               variants={cardVariants}
@@ -378,9 +381,9 @@ export default function About() {
               animate="animate"
               className="h-full"
             >
-              <Card className="bg-neutral-900 border-white/10 h-full">
+              <Card className="border-border bg-card h-full">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-xl font-semibold text-white flex items-center gap-2">
+                  <CardTitle className="text-xl font-semibold text-foreground flex items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="18"
@@ -391,7 +394,7 @@ export default function About() {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="text-blue-400"
+                      className="text-blue-500 dark:text-blue-400"
                     >
                       <rect
                         x="2"
@@ -409,26 +412,26 @@ export default function About() {
                 <CardContent>
                   <div className="relative">
                     {/* Vertical line */}
-                    <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10" />
+                    <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
 
                     {/* Experience items */}
                     <div className="space-y-8 relative">
                       {experiences.map((experience, index) => (
                         <div key={index} className="relative pl-6">
                           {/* Timeline dot */}
-                          <div className="absolute left-[-5px] top-1.5 h-2.5 w-2.5 rounded-full bg-blue-500" />
+                          <div className="absolute left-[-5px] top-1.5 h-2.5 w-2.5 rounded-full bg-blue-500 dark:bg-blue-400" />
 
                           <div className="space-y-2">
-                            <div className="text-blue-400 font-medium">
+                            <div className="text-blue-500 dark:text-blue-400 font-medium">
                               {experience.year}
                             </div>
-                            <h4 className="text-white font-semibold text-lg">
+                            <h4 className="text-foreground font-semibold text-lg">
                               {experience.position}
                             </h4>
-                            <div className="text-white/70">
+                            <div className="text-muted-foreground">
                               {experience.company}
                             </div>
-                            <p className="text-gray-400">
+                            <p className="text-muted-foreground">
                               {experience.description}
                             </p>
                           </div>
@@ -449,9 +452,9 @@ export default function About() {
             animate="animate"
             className="col-span-1 md:col-span-2"
           >
-            <Card className="bg-neutral-900 border-white/10 h-full">
+            <Card className="border-border bg-card h-full">
               <CardHeader className="pb-2">
-                <CardTitle className="text-xl font-semibold text-white flex items-center gap-2">
+                <CardTitle className="text-xl font-semibold text-foreground flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
@@ -462,7 +465,7 @@ export default function About() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-purple-400"
+                    className="text-purple-500 dark:text-purple-400"
                   >
                     <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"></path>
                     <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path>
@@ -483,38 +486,38 @@ export default function About() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 bg-white/5 rounded-md">
-                  <h4 className="text-white font-medium mb-2">
+                <div className="p-4 bg-accent/50 rounded-md border border-border">
+                  <h4 className="text-foreground font-medium mb-2">
                     Frontend Development
                   </h4>
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Creating responsive, intuitive user interfaces using modern
                     frameworks and design principles.
                   </p>
                 </div>
-                <div className="p-4 bg-white/5 rounded-md">
-                  <h4 className="text-white font-medium mb-2">
+                <div className="p-4 bg-accent/50 rounded-md border border-border">
+                  <h4 className="text-foreground font-medium mb-2">
                     Backend Architecture
                   </h4>
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Building scalable, secure APIs and server applications with
                     optimized performance.
                   </p>
                 </div>
-                <div className="p-4 bg-white/5 rounded-md">
-                  <h4 className="text-white font-medium mb-2">
+                <div className="p-4 bg-accent/50 rounded-md border border-border">
+                  <h4 className="text-foreground font-medium mb-2">
                     Database Design
                   </h4>
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Creating efficient data structures and relationships for
                     optimal application performance.
                   </p>
                 </div>
-                <div className="p-4 bg-white/5 rounded-md">
-                  <h4 className="text-white font-medium mb-2">
+                <div className="p-4 bg-accent/50 rounded-md border border-border">
+                  <h4 className="text-foreground font-medium mb-2">
                     DevOps & Deployment
                   </h4>
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Setting up CI/CD pipelines and managing cloud infrastructure
                     for smooth deployments.
                   </p>
@@ -530,9 +533,9 @@ export default function About() {
             initial="initial"
             animate="animate"
           >
-            <Card className="bg-neutral-900 border-white/10 h-full">
+            <Card className="border-border bg-card h-full">
               <CardHeader className="pb-2">
-                <CardTitle className="text-xl font-semibold text-white flex items-center gap-2">
+                <CardTitle className="text-xl font-semibold text-foreground flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
@@ -543,7 +546,7 @@ export default function About() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-yellow-400"
+                    className="text-yellow-500 dark:text-yellow-400"
                   >
                     <circle cx="12" cy="8" r="6"></circle>
                     <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
@@ -553,12 +556,13 @@ export default function About() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
-                  <p className="text-gray-300 text-sm">
+                  <div className="h-2 w-2 rounded-full bg-yellow-500 dark:bg-yellow-400"></div>
+                  <p className="text-muted-foreground text-sm">
                     <a
                       href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Accenture%20Nordics/PxenP4rHNE6Bh4nQz_Accenture%20Nordics_XugLHi9jz97vM84qx_1677194329426_completion_certificate.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="hover:text-foreground transition-colors underline"
                     >
                       Forage Developer Virtual Experience
                     </a>
@@ -566,12 +570,13 @@ export default function About() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
-                  <p className="text-gray-300 text-sm">
+                  <div className="h-2 w-2 rounded-full bg-yellow-500 dark:bg-yellow-400"></div>
+                  <p className="text-muted-foreground text-sm">
                     <a
                       href="https://www.hackerrank.com/certificates/iframe/81bf0d1820d7"
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="hover:text-foreground transition-colors underline"
                     >
                       Hacker Rank Java
                     </a>
@@ -579,12 +584,13 @@ export default function About() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
-                  <p className="text-gray-300 text-sm">
+                  <div className="h-2 w-2 rounded-full bg-yellow-500 dark:bg-yellow-400"></div>
+                  <p className="text-muted-foreground text-sm">
                     <a
                       href="https://www.sololearn.com/en/certificates/CC-MR0ZJWZ2"
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="hover:text-foreground transition-colors underline"
                     >
                       Solo Learn SQL
                     </a>
@@ -598,8 +604,8 @@ export default function About() {
 
       {/* Subtle background effect */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-blue-500/5 rounded-full filter blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-purple-500/5 rounded-full filter blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-blue-500/10 dark:bg-blue-500/5 rounded-full filter blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/5 rounded-full filter blur-3xl" />
       </div>
     </motion.section>
   );

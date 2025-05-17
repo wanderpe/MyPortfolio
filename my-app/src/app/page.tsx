@@ -30,7 +30,7 @@ export default function Home() {
       {/* Navigation */}
 
       {/* Hero Section */}
-      <main className=" min-h-screen bg-neutral-950 text-white relative overflow-hidden">
+      <main className=" min-h-screen  text-foreground relative overflow-hidden">
         <About />
 
         {/* Subtle background effect */}
@@ -62,11 +62,8 @@ export default function Home() {
       </motion.section> */}
 
       {/* Projects Section */}
-      <motion.section
-        ref={projectsRef}
-        
-      >
-        <Projects/>
+      <motion.section ref={projectsRef}>
+        <Projects />
       </motion.section>
 
       {/* Contact Section */}
